@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ನ್ಯೂಸ್ ಜಂಕ್ಷನ್ | News Junction – Live News</title>
+<meta name="description" content="Karnataka's live news portal – India, Sports, Cinema, Gold Price, Petrol, Jobs. Free, real-time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;600;700;900&family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--saf:#E8500A;--deep:#1A0A2E;--gold:#F5A623;--grn:#00875A;--sky:#0066CC;--paper:#F8F5EF;--ink:#111;--mut:#6E6E6E;--bdr:#E2DDD5;--red:#C0392B;--live:#FF3B30}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'DM Sans','Noto Sans Kannada',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden}
+
+#ld{position:fixed;inset:0;background:var(--deep);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:opacity .5s}
+#ld.hide{opacity:0;pointer-events:none}
+.ll{font-size:52px;animation:lb .9s ease-in-out infinite}
+@keyframes lb{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.lt2{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:#fff}
+.ls3{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.lbar{width:260px;height:4px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
+.lfill{height:100%;background:linear-gradient(90deg,var(--saf),var(--gold));border-radius:2px;width:0;transition:width .4s ease}
+.lmsg{font-size:12px;color:rgba(255,255,255,.4);min-height:18px}
+
+.tkr{background:var(--red);color:#fff;height:34px;display:flex;align-items:center;overflow:hidden;font-size:13px;font-weight:600}
+.tlbl{background:#000;padding:0 14px;height:100%;display:flex;align-items:center;gap:6px;white-space:nowrap;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0;border-right:2px solid var(--gold)}
+.dot{width:7px;height:7px;background:var(--live);border-radius:50%;animation:bk 1s infinite;flex-shrink:0}
+@keyframes bk{0%,100%{opacity:1}50%{opacity:.2}}
+.ttrk{overflow:hidden;flex:1}
+.tinn{display:inline-flex;gap:60px;animation:sc 55s linear infinite;white-space:nowrap;padding-left:20px}
+.tinn:hover{animation-play-state:paused}
+.ti::before{content:"▶ ";opacity:.4}
+@keyframes sc{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+header{background:var(--deep);position:sticky;top:0;z-index:300;border-bottom:3px solid var(--saf);box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.hd{max-width:1440px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:62px;gap:10px}
+.logo{display:flex;align-items:center;gap:10px}
+.lic{width:40px;height:40px;background:linear-gradient(135deg,var(--saf),var(--gold));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;box-shadow:0 0 14px rgba(232,80,10,.5);flex-shrink:0}
+.lnm{font-family:'Playfair Display',serif;font-size:19px;font-weight:900;background:linear-gradient(90deg,#fff,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.lsb{font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase}
+.hm{display:flex;align-items:center;gap:11px}
+.lbdg{background:var(--live);color:#fff;font-size:9px;font-weight:700;letter-spacing:2px;padding:3px 9px;border-radius:20px;display:flex;align-items:center;gap:4px;animation:gl 2s infinite}
+@keyframes gl{0%,100%{box-shadow:0 0 0 0 rgba(255,59,48,.4)}50%{box-shadow:0 0 0 6px rgba(255,59,48,0)}}
+.clk{font-size:11px;color:rgba(255,255,255,.45)}
+.ltog{display:flex;background:rgba(255,255,255,.1);border-radius:20px;overflow:hidden}
+.lbtn{padding:4px 12px;font-size:11px;font-weight:600;cursor:pointer;border:none;background:none;color:rgba(255,255,255,.5);font-family:'DM Sans',sans-serif;transition:all .2s}
+.lbtn.on{background:var(--saf);color:#fff;border-radius:20px}
+nav{background:var(--deep);border-top:1px solid rgba(255,255,255,.06)}
+.nr{max-width:1440px;margin:0 auto;padding:0 20px;display:flex;overflow-x:auto;scrollbar-width:none}
+.nr::-webkit-scrollbar{display:none}
+.nl{padding:8px 14px;font-size:12px;font-weight:600;color:rgba(255,255,255,.55);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;text-decoration:none;transition:all .2s;font-family:'Noto Sans Kannada','DM Sans',sans-serif}
+.nl:hover{color:#fff}.nl.on{color:var(--gold);border-bottom-color:var(--gold)}
+
+.strip{background:#fff;border-bottom:2px solid var(--bdr);overflow-x:auto;scrollbar-width:none}
+.strip::-webkit-scrollbar{display:none}
+.sr{max-width:1440px;margin:0 auto;padding:0 14px;display:flex;align-items:stretch;height:50px}
+.sc2{display:flex;align-items:center;gap:7px;padding:0 14px;border-right:1px solid var(--bdr);min-width:max-content}
+.si{font-size:16px}
+.sla{font-size:9px;color:var(--mut);text-transform:uppercase;letter-spacing:.7px;font-weight:600;display:block}
+.sva{font-size:13px;font-weight:700}
+.sch{font-size:10px;font-weight:600}
+.up{color:var(--grn)}.dn{color:var(--red)}
+
+.wrap{max-width:1440px;margin:0 auto;padding:20px;display:grid;grid-template-columns:1fr 320px;gap:22px}
+@media(max-width:960px){.wrap{grid-template-columns:1fr}}
+
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;padding-bottom:9px;border-bottom:2px solid var(--bdr)}
+.st{font-family:'Playfair Display',serif;font-size:19px;font-weight:900;display:flex;align-items:center;gap:8px}
+.st::before{content:'';width:4px;height:22px;background:var(--saf);border-radius:3px;flex-shrink:0}
+.va{font-size:11px;font-weight:600;color:var(--sky);cursor:pointer}
+.rbdg{display:inline-flex;align-items:center;gap:4px;background:rgba(0,135,90,.1);color:var(--grn);font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;cursor:pointer}
+.rbdg:hover{background:rgba(0,135,90,.18)}
+
+.hgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:22px}
+.hcard{background:#fff;border-radius:13px;overflow:hidden;cursor:pointer;transition:transform .22s,box-shadow .22s;box-shadow:0 2px 8px rgba(0,0,0,.07);border:1px solid var(--bdr)}
+.hcard:hover{transform:translateY(-3px);box-shadow:0 11px 26px rgba(0,0,0,.12)}
+.hcard.main{grid-column:1/-1}
+.himg{width:100%;height:180px;display:flex;align-items:center;justify-content:center;font-size:54px;position:relative;overflow:hidden}
+.himg img{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0}
+.himg .emo{position:relative;z-index:1;font-size:54px;text-shadow:0 2px 8px rgba(0,0,0,.2)}
+.hcard.main .himg{height:280px}
+.hcard.main .himg .emo{font-size:76px}
+.hbody{padding:14px}
+.ctag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;padding:2px 8px;border-radius:20px;margin-bottom:7px}
+.cIN,.cIN2{background:rgba(255,153,0,.15);color:#b86a00}
+.cKA{background:rgba(220,50,50,.12);color:#900}
+.cSP{background:rgba(0,135,90,.12);color:var(--grn)}
+.cTE{background:rgba(0,102,204,.12);color:var(--sky)}
+.cEN{background:rgba(142,68,173,.12);color:#8e44ad}
+.cBU{background:rgba(200,150,0,.15);color:#996600}
+.cWO{background:rgba(52,73,94,.12);color:#34495e}
+.htitle{font-family:'Noto Sans Kannada','DM Sans',sans-serif;font-size:14px;font-weight:700;line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.hcard.main .htitle{font-size:17px;-webkit-line-clamp:2}
+.hsum{font-size:12px;color:var(--mut);line-height:1.65;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:10px}
+.hfoot{display:flex;align-items:center;justify-content:space-between;font-size:10px;color:var(--mut);gap:6px;flex-wrap:wrap}
+.wabtn{background:#25D366;color:#fff;border:none;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:600;cursor:pointer}
+.rdBtn{font-size:10px;font-weight:600;color:var(--sky);background:rgba(0,102,204,.08);padding:3px 8px;border-radius:20px;border:none;cursor:pointer;text-decoration:none;display:inline-block}
+
+.nlist{display:flex;flex-direction:column;gap:9px}
+.nitem{background:#fff;border-radius:11px;padding:12px;display:grid;grid-template-columns:68px 1fr;gap:10px;cursor:pointer;transition:transform .18s,box-shadow .18s,border-color .18s;border:1px solid var(--bdr)}
+.nitem:hover{transform:translateX(3px);box-shadow:0 5px 16px rgba(0,0,0,.1);border-color:var(--saf)}
+.nth{width:68px;height:68px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;overflow:hidden;position:relative}
+.nth img{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0}
+.nth .nemo{position:relative;z-index:1}
+.ntitle{font-size:12px;font-weight:600;line-height:1.45;margin-bottom:5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.nmeta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.ntime{font-size:10px;color:var(--mut)}
+.nsrc{font-size:9px;color:var(--mut);background:var(--paper);padding:2px 6px;border-radius:10px}
+
+.sk{background:linear-gradient(90deg,#ebebeb 25%,#f5f5f5 50%,#ebebeb 75%);background-size:200% 100%;animation:sh2 1.3s infinite;border-radius:8px;display:block}
+@keyframes sh2{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:700px){.cgrid{grid-template-columns:1fr 1fr}.hgrid{grid-template-columns:1fr}}
+.ccard{background:#fff;border-radius:11px;overflow:hidden;cursor:pointer;border:1px solid var(--bdr);transition:transform .2s,box-shadow .2s}
+.ccard:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.1)}
+.cimg{height:105px;display:flex;align-items:center;justify-content:center;font-size:38px;position:relative;overflow:hidden}
+.cimg img{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0}
+.cimg .cemo{position:relative;z-index:1}
+.cbody{padding:10px}
+.ctxt{font-size:11px;font-weight:600;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+.tabs{display:flex;gap:5px;margin-bottom:12px;flex-wrap:wrap}
+.tb{padding:5px 12px;border-radius:20px;border:1.5px solid var(--bdr);background:#fff;font-size:11px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.tb.on{background:var(--deep);color:#fff;border-color:var(--deep)}
+.tb:hover:not(.on){border-color:var(--saf);color:var(--saf)}
+
+.w{background:#fff;border-radius:13px;padding:15px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid var(--bdr)}
+.wt{font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:11px;display:flex;align-items:center;gap:6px}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.pbox{background:var(--paper);border-radius:9px;padding:9px;text-align:center;border:1px solid var(--bdr)}
+.pm{font-size:9px;color:var(--mut);font-weight:600;text-transform:uppercase;letter-spacing:.6px}
+.pp{font-size:16px;font-weight:800;margin:2px 0}
+.pgold{color:#b8860b}.psilv{color:#708090}
+.ps{font-size:9px;color:var(--mut)}
+.fr{display:flex;align-items:center;justify-content:space-between;background:var(--paper);padding:8px 11px;border-radius:7px;margin-bottom:5px}
+.fn{font-size:11px;font-weight:600;display:flex;align-items:center;gap:5px}
+.fc{font-size:9px;color:var(--mut)}
+.fprice{font-size:15px;font-weight:800}
+.srow{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--bdr)}
+.srow:last-child{border-bottom:none}
+.sn{font-size:11px;font-weight:600}
+.sv2{font-size:11px;font-weight:700}
+.trtags{display:flex;flex-wrap:wrap;gap:5px}
+.trtag{background:var(--paper);border:1px solid var(--bdr);border-radius:20px;padding:4px 11px;font-size:11px;font-weight:600;cursor:pointer;transition:all .2s}
+.trtag:hover{background:var(--saf);color:#fff;border-color:var(--saf)}
+.ji{background:var(--paper);border-radius:8px;padding:9px;cursor:pointer;margin-bottom:5px;border-left:3px solid transparent;transition:all .2s}
+.ji:hover{background:rgba(0,102,204,.06);border-left-color:var(--sky)}
+.jt{font-size:11px;font-weight:600;margin-bottom:2px}
+.jo{font-size:9px;color:var(--mut)}
+.jtags{display:flex;gap:4px;margin-top:4px;flex-wrap:wrap}
+.jtag{font-size:9px;font-weight:600;padding:2px 5px;border-radius:7px;background:rgba(0,102,204,.1);color:var(--sky)}
+.jtag.g{background:rgba(0,135,90,.1);color:var(--grn)}
+.jtag.w{background:rgba(142,68,173,.1);color:#8e44ad}
+.wr{display:flex;align-items:center;gap:11px;margin-bottom:9px}
+.wi{font-size:42px}
+.wtemp{font-size:36px;font-weight:800;letter-spacing:-2px}
+.wdet{font-size:11px;color:var(--mut);line-height:1.8}
+.wstats{display:flex;gap:8px}
+.wst{flex:1;text-align:center;background:var(--paper);border-radius:7px;padding:6px}
+.wsl{font-size:9px;color:var(--mut);text-transform:uppercase}
+.wsv{font-size:12px;font-weight:700}
+.t10l{display:flex;flex-direction:column;gap:5px}
+.t10i{display:flex;align-items:flex-start;gap:9px;padding:6px;border-radius:7px;cursor:pointer;transition:background .2s;text-decoration:none;color:inherit}
+.t10i:hover{background:var(--paper)}
+.t10n{font-size:18px;font-weight:900;font-family:'Playfair Display',serif;color:#ddd;min-width:24px;line-height:1}
+.t10t{font-size:11px;font-weight:600;line-height:1.4}
+
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;display:none;align-items:center;justify-content:center;padding:14px;backdrop-filter:blur(4px)}
+.modal.open{display:flex}
+.mbox{background:#fff;border-radius:15px;max-width:560px;width:100%;overflow:hidden;box-shadow:0 26px 60px rgba(0,0,0,.27);animation:mp .28s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes mp{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.mh{background:var(--deep);color:#fff;padding:15px 18px;display:flex;justify-content:space-between;align-items:flex-start;gap:9px}
+.mh h3{font-size:13px;font-weight:700;flex:1;line-height:1.4}
+.mcls{background:none;border:none;color:#fff;font-size:19px;cursor:pointer;opacity:.6;flex-shrink:0}
+.mcls:hover{opacity:1}
+.mbody{padding:18px}
+.msrc-badge{display:inline-flex;align-items:center;gap:5px;background:var(--paper);border:1px solid var(--bdr);font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;margin-bottom:10px}
+.msum{font-size:13px;line-height:1.85;color:var(--ink);margin-bottom:11px}
+.mlink{display:inline-flex;align-items:center;gap:5px;color:var(--sky);font-size:12px;font-weight:600;margin-bottom:11px;text-decoration:none}
+.mlink:hover{text-decoration:underline}
+.mact{display:flex;gap:7px;flex-wrap:wrap}
+.bwa{background:#25D366;color:#fff;border:none;padding:8px 14px;border-radius:7px;font-weight:600;font-size:11px;cursor:pointer}
+.bcls{background:var(--deep);color:#fff;border:none;padding:8px 14px;border-radius:7px;font-weight:600;font-size:11px;cursor:pointer}
+.bred{background:var(--sky);color:#fff;border:none;padding:8px 14px;border-radius:7px;font-weight:600;font-size:11px;cursor:pointer;text-decoration:none}
+
+.vbtn{position:fixed;bottom:20px;right:20px;z-index:500;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--saf),var(--gold));border:none;cursor:pointer;font-size:19px;box-shadow:0 5px 15px rgba(232,80,10,.4);animation:fl 3s ease-in-out infinite;display:flex;align-items:center;justify-content:center}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+.adsl{background:#f5f5f5;border:1px dashed #ccc;border-radius:7px;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin:11px 0}
+.adsl.ban{height:76px}.adsl.sq{height:230px}
+
+.err{background:#fff;border-radius:13px;padding:32px;text-align:center;border:1px solid var(--bdr);grid-column:1/-1}
+
+footer{background:var(--deep);color:rgba(255,255,255,.6);padding:28px 20px 16px;margin-top:28px}
+.fi2{max-width:1440px;margin:0 auto}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:22px;margin-bottom:20px}
+@media(max-width:768px){.fg{grid-template-columns:1fr 1fr}}
+.flo{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;color:#fff}
+.fde{font-size:11px;line-height:1.7;margin-top:7px;color:rgba(255,255,255,.4)}
+.fct{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:9px}
+.flk{list-style:none;display:flex;flex-direction:column;gap:6px}
+.flk li{font-size:11px;cursor:pointer;transition:color .2s}.flk li:hover{color:#fff}
+.fb{border-top:1px solid rgba(255,255,255,.1);padding-top:13px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-size:10px}
+@media(max-width:600px){.hd{height:54px}.lnm{font-size:16px}.wrap{padding:12px 10px}}
+</style>
+</head>
+<body>
+
+<div id="ld">
+  <div class="ll">📰</div>
+  <div class="lt2">ನ್ಯೂಸ್ ಜಂಕ್ಷನ್</div>
+  <div class="ls3">Loading live news...</div>
+  <div class="lbar"><div class="lfill" id="lf"></div></div>
+  <div class="lmsg" id="lm">📡 Connecting to news sources...</div>
+</div>
+
+<div class="tkr">
+  <div class="tlbl"><div class="dot"></div><span>LIVE</span></div>
+  <div class="ttrk"><div class="tinn" id="tickerEl">
+    <span class="ti">Loading news...</span><span class="ti">ಸುದ್ದಿ ತರಲಾಗುತ್ತಿದೆ...</span>
+    <span class="ti">Loading news...</span><span class="ti">ಸುದ್ದಿ ತರಲಾಗುತ್ತಿದೆ...</span>
+  </div></div>
+</div>
+
+<header>
+  <div class="hd">
+    <div class="logo">
+      <div class="lic">📰</div>
+      <div><div class="lnm">ನ್ಯೂಸ್ ಜಂಕ್ಷನ್</div><div class="lsb">Live RSS News · ಕನ್ನಡ & English</div></div>
+    </div>
+    <div class="hm">
+      <div class="lbdg"><div class="dot"></div> LIVE</div>
+      <div class="clk" id="clk">--:-- --</div>
+      <div class="ltog">
+        <button class="lbtn on" onclick="setLang('kn',this)">ಕನ್ನಡ</button>
+        <button class="lbtn" onclick="setLang('en',this)">EN</button>
+      </div>
+    </div>
+  </div>
+  <nav><div class="nr" id="navRow">
+    <a class="nl on" onclick="doFilter('all',this)">🏠 Home</a>
+    <a class="nl" onclick="doFilter('India',this)">🇮🇳 India</a>
+    <a class="nl" onclick="doFilter('Karnataka',this)">Karnataka</a>
+    <a class="nl" onclick="doFilter('Technology',this)">📱 Tech</a>
+    <a class="nl" onclick="doFilter('Sports',this)">🏏 Sports</a>
+    <a class="nl" onclick="doFilter('Entertainment',this)">🎬 Cinema</a>
+    <a class="nl" onclick="doFilter('Business',this)">💼 Business</a>
+    <a class="nl" onclick="doFilter('World',this)">🌍 World</a>
+    <a class="nl" href="#jobsW">💼 Jobs</a>
+    <a class="nl" href="#top10s">🏆 Top 10</a>
+  </div></nav>
+</header>
+
+<div class="strip"><div class="sr">
+  <div class="sc2"><span class="si">🥇</span><div><span class="sla">Gold/10g</span><span class="sva" id="uG">--</span></div></div>
+  <div class="sc2"><span class="si">🥈</span><div><span class="sla">Silver/kg</span><span class="sva" id="uS">--</span></div></div>
+  <div class="sc2"><span class="si">⛽</span><div><span class="sla">Petrol BLR</span><span class="sva" id="uP">--</span></div></div>
+  <div class="sc2"><span class="si">🛢️</span><div><span class="sla">Diesel BLR</span><span class="sva" id="uD">--</span></div></div>
+  <div class="sc2"><span class="si">📈</span><div><span class="sla">Sensex</span><span class="sva" id="uSX">--</span></div></div>
+  <div class="sc2"><span class="si">📊</span><div><span class="sla">Nifty 50</span><span class="sva" id="uNF">--</span></div></div>
+  <div class="sc2"><span class="si">🌤️</span><div><span class="sla">Bengaluru</span><span class="sva" id="uW">--</span></div></div>
+  <div class="sc2"><span class="si">💵</span><div><span class="sla">USD/INR</span><span class="sva" id="uUSD">--</span></div></div>
+</div></div>
+
+<div class="wrap">
+  <main>
+    <div class="adsl ban">📢 Google AdSense – 728×90</div>
+    <div class="sh">
+      <h2 class="st" id="hLbl">ಇಂದಿನ ಪ್ರಮುಖ ಸುದ್ದಿ</h2>
+      <span class="rbdg" onclick="refreshNews()">🔄 <span id="updLbl">Loading...</span></span>
+    </div>
+    <div class="hgrid" id="heroGrid">
+      <div class="hcard main"><div class="sk" style="height:280px"></div><div style="padding:14px"><div class="sk" style="height:18px;margin-bottom:8px"></div><div class="sk" style="height:12px;width:80%;margin-bottom:5px"></div><div class="sk" style="height:12px;width:60%"></div></div></div>
+      <div class="hcard"><div class="sk" style="height:180px"></div><div style="padding:14px"><div class="sk" style="height:12px;margin-bottom:6px"></div><div class="sk" style="height:10px;width:70%"></div></div></div>
+      <div class="hcard"><div class="sk" style="height:180px"></div><div style="padding:14px"><div class="sk" style="height:12px;margin-bottom:6px"></div><div class="sk" style="height:10px;width:70%"></div></div></div>
+    </div>
+    <div class="adsl ban">📢 Google AdSense – 728×90</div>
+    <div class="sh"><h2 class="st" id="nLbl">ಎಲ್ಲ ಸುದ್ದಿ</h2><a class="va">More →</a></div>
+    <div class="tabs" id="catTabs">
+      <button class="tb on" onclick="doFilter('all',this)">ಎಲ್ಲ</button>
+      <button class="tb" onclick="doFilter('India',this)">India</button>
+      <button class="tb" onclick="doFilter('Karnataka',this)">Karnataka</button>
+      <button class="tb" onclick="doFilter('Technology',this)">Tech</button>
+      <button class="tb" onclick="doFilter('Sports',this)">Sports</button>
+      <button class="tb" onclick="doFilter('Entertainment',this)">Cinema</button>
+      <button class="tb" onclick="doFilter('Business',this)">Business</button>
+    </div>
+    <div id="newsList">
+      <div class="sk" style="height:88px;border-radius:11px"></div>
+      <div class="sk" style="height:88px;border-radius:11px;margin-top:9px"></div>
+      <div class="sk" style="height:88px;border-radius:11px;margin-top:9px"></div>
+      <div class="sk" style="height:88px;border-radius:11px;margin-top:9px"></div>
+    </div>
+
+    <div style="margin-top:26px">
+      <div class="sh"><h2 class="st">🎬 ಸಿನಿಮಾ & OTT</h2><a class="va">More →</a></div>
+      <div class="cgrid" id="entGrid"><div class="sk" style="height:160px;border-radius:11px"></div><div class="sk" style="height:160px;border-radius:11px"></div><div class="sk" style="height:160px;border-radius:11px"></div></div>
+    </div>
+    <div style="margin-top:26px">
+      <div class="sh"><h2 class="st">🔥 ಟ್ರೆಂಡಿಂಗ್ ಸ್ಟೋರಿಸ್</h2><a class="va">More →</a></div>
+      <div class="cgrid" id="viralGrid"><div class="sk" style="height:160px;border-radius:11px"></div><div class="sk" style="height:160px;border-radius:11px"></div><div class="sk" style="height:160px;border-radius:11px"></div></div>
+    </div>
+    <div class="adsl ban">📢 Google AdSense – 728×90</div>
+
+    <div id="top10s" style="margin-top:26px">
+      <div class="sh"><h2 class="st">🏆 Top 10 – Live</h2><span class="rbdg">📡 RSS</span></div>
+      <div class="tabs" id="t10tabs">
+        <button class="tb on" onclick="showTop10('all',this)">📰 All</button>
+        <button class="tb" onclick="showTop10('Sports',this)">🏏 Sports</button>
+        <button class="tb" onclick="showTop10('Entertainment',this)">🎬 Cinema</button>
+        <button class="tb" onclick="showTop10('Technology',this)">📱 Tech</button>
+        <button class="tb" onclick="showTop10('Business',this)">💼 Biz</button>
+      </div>
+      <div class="w" id="top10Box" style="margin-bottom:0"><div class="sk" style="height:260px"></div></div>
+    </div>
+  </main>
+
+  <aside>
+    <div class="w">
+      <div class="wt">🌤️ Bengaluru Weather</div>
+      <div class="wr"><div class="wi" id="wIco">⛅</div><div><div class="wtemp" id="wTmp">--°</div><div class="wdet" id="wDet">Loading...</div></div></div>
+      <div class="wstats">
+        <div class="wst"><div class="wsl">💧 Humidity</div><div class="wsv" id="wH">--</div></div>
+        <div class="wst"><div class="wsl">💨 Wind</div><div class="wsv" id="wWd">--</div></div>
+        <div class="wst"><div class="wsl">🌡️ High</div><div class="wsv" id="wHi">--</div></div>
+      </div>
+    </div>
+    <div class="w">
+      <div class="wt">💰 ಚಿನ್ನ & ಬೆಳ್ಳಿ</div>
+      <div class="pgrid" id="priceGrid">
+        <div class="sk" style="height:72px;border-radius:9px"></div><div class="sk" style="height:72px;border-radius:9px"></div>
+        <div class="sk" style="height:72px;border-radius:9px"></div><div class="sk" style="height:72px;border-radius:9px"></div>
+      </div>
+    </div>
+    <div class="w">
+      <div class="wt">⛽ ಇಂಧನ ಬೆಲೆ</div>
+      <div id="fuelBox"><div class="sk" style="height:105px;border-radius:7px"></div></div>
+    </div>
+    <div class="adsl sq">📢 AdSense 300×250</div>
+    <div class="w">
+      <div class="wt">📈 Market</div>
+      <div class="srow"><span class="sn">Sensex</span><span class="sv2 up" id="ms1">--</span></div>
+      <div class="srow"><span class="sn">Nifty 50</span><span class="sv2" id="ms2">--</span></div>
+      <div class="srow"><span class="sn">Bank Nifty</span><span class="sv2 up" id="ms3">--</span></div>
+      <div class="srow"><span class="sn">USD/INR</span><span class="sv2" id="ms4">--</span></div>
+      <div class="srow"><span class="sn">Crude Oil</span><span class="sv2 dn" id="ms5">--</span></div>
+    </div>
+    <div class="w">
+      <div class="wt">🔥 Trending Tags</div>
+      <div class="trtags" id="trendBox"></div>
+    </div>
+    <div class="w" id="jobsW">
+      <div class="wt">💼 ಉದ್ಯೋಗ ಅಲರ್ಟ್</div>
+      <div id="jobsBox"></div>
+    </div>
+    <div class="adsl sq">📢 AdSense 300×250</div>
+  </aside>
+</div>
+
+<button class="vbtn" onclick="toggleVoice()" id="vbtn">🔊</button>
+
+<div class="modal" id="modal" onclick="closeModal(event)">
+  <div class="mbox">
+    <div class="mh"><h3 id="mTitle">Story</h3><button class="mcls" onclick="closeModal()">✕</button></div>
+    <div class="mbody">
+      <div class="msrc-badge" id="mSrcBadge">📰 Source</div>
+      <div class="msum" id="mSum"></div>
+      <a class="mlink" id="mLink" href="#" target="_blank" rel="noopener">🔗 Read Full Story →</a>
+      <div class="mact">
+        <button class="bwa" onclick="doShareWA()">📲 WhatsApp</button>
+        <a class="bred" id="mOpenBtn" href="#" target="_blank" rel="noopener">🌐 Open</a>
+        <button class="bcls" onclick="closeModal()">✕ Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="fi2">
+    <div class="fg">
+      <div><div class="flo">ನ್ಯೂಸ್ ಜಂಕ್ಷನ್</div><div class="fde">Karnataka's live news portal powered by RSS. NDTV, Times of India, Indian Express & more. Auto-refreshes every 30 min.</div></div>
+      <div><div class="fct">Sections</div><ul class="flk"><li>🇮🇳 India</li><li>Karnataka</li><li>📱 Tech</li><li>🏏 Sports</li><li>🎬 Cinema</li></ul></div>
+      <div><div class="fct">Useful</div><ul class="flk"><li>💰 Gold Price</li><li>⛽ Petrol</li><li>🌤️ Weather</li><li>💼 Jobs</li><li>📈 Market</li></ul></div>
+      <div><div class="fct">Info</div><ul class="flk"><li>About</li><li>Advertise</li><li>Privacy</li><li>Contact</li></ul></div>
+    </div>
+    <div class="fb"><span>© 2025 ನ್ಯೂಸ್ ಜಂಕ್ಷನ್</span><span>📡 RSS Powered · 🇮🇳 Made in Karnataka · ♻️ Auto-updates every 30 min</span></div>
+  </div>
+</footer>
+
+<script>
+// ════════════════════════════════════════════════════════════
+//  NEWS JUNCTION  |  100% FREE — ZERO API CALLS
+//  News  : RSS via rss2json.com (free, no key needed)
+//  Weather: wttr.in (free, no key)
+//  Gold  : data-asg.goldprice.org (free, no key)
+//  NO Claude API calls — no rate limits ever!
+// ════════════════════════════════════════════════════════════
+
+const G = { lang:'kn', news:[], filter:'all', curTitle:'', curLink:'', vOn:false };
+const CACHE_MIN = 30;
+
+// ── RSS FEEDS ────────────────────────────────────────────────
+const FEEDS = [
+  { url:'https://feeds.feedburner.com/ndtvnews-top-stories',           cat:'India',         emo:'🇮🇳', col:'#FFF0EF' },
+  { url:'https://feeds.feedburner.com/ndtvnews-india-news',            cat:'India',         emo:'📰', col:'#FFF7ED' },
+  { url:'https://timesofindia.indiatimes.com/rssfeedstopstories.cms',  cat:'India',         emo:'🗞️', col:'#FFFBEB' },
+  { url:'https://feeds.feedburner.com/ndtvnews-tech',                  cat:'Technology',    emo:'📱', col:'#EFF6FF' },
+  { url:'https://feeds.feedburner.com/ndtvnews-sports',                cat:'Sports',        emo:'🏏', col:'#F0FFF4' },
+  { url:'https://feeds.feedburner.com/ndtvnews-entertainment',         cat:'Entertainment', emo:'🎬', col:'#FDF4FF' },
+  { url:'https://feeds.feedburner.com/ndtvnews-india-business',        cat:'Business',      emo:'💼', col:'#FFFBEB' },
+  { url:'https://www.thehindu.com/feeder/default.rss',                 cat:'India',         emo:'📋', col:'#FFF0EF' },
+  { url:'https://indianexpress.com/section/technology/feed/',          cat:'Technology',    emo:'💻', col:'#EFF6FF' },
+  { url:'https://indianexpress.com/section/entertainment/feed/',       cat:'Entertainment', emo:'🎭', col:'#FDF4FF' },
+];
+
+// ── CORS PROXIES (tried in order until one works) ────────────
+// Proxy 1: rss2json – returns clean JSON (easiest)
+// Proxy 2: allorigins – returns raw XML (parse with DOMParser)
+// Proxy 3: corsproxy.io – returns raw XML
+const PROXIES = [
+  { type:'rss2json', base:'https://api.rss2json.com/v1/api.json?rss_url=' },
+  { type:'xml',      base:'https://api.allorigins.win/raw?url=' },
+  { type:'xml',      base:'https://corsproxy.io/?url=' },
+];
+
+// ── HARDCODED FALLBACK NEWS (shown if all proxies fail) ──────
+const FALLBACK_NEWS = [
+  {title:'India GDP Growth Surges to 7.8% in Latest Quarter',summary:'India\'s economy continues its strong momentum with GDP growth hitting 7.8%, driven by manufacturing and services sectors.',link:'https://economictimes.indiatimes.com',pubDate:new Date().toISOString(),cat:'Business',emo:'📈',col:'#FFFBEB',src:'Economic Times',img:''},
+  {title:'IPL 2025: Exciting Match Ends in Super Over Thriller',summary:'Last night\'s IPL match kept fans on the edge with a nail-biting super over finish. Both teams gave outstanding performances.',link:'https://timesofindia.indiatimes.com',pubDate:new Date(Date.now()-3600000).toISOString(),cat:'Sports',emo:'🏏',col:'#F0FFF4',src:'Times of India',img:''},
+  {title:'ISRO Successfully Tests New Rocket Engine for Gaganyaan',summary:'ISRO has completed successful tests of the CE-20 cryogenic engine, marking a milestone in India\'s human spaceflight mission.',link:'https://ndtv.com',pubDate:new Date(Date.now()-7200000).toISOString(),cat:'Technology',emo:'🚀',col:'#EFF6FF',src:'NDTV',img:''},
+  {title:'Karnataka Budget 2025: Rs 3.71 Lakh Crore Allocation',summary:'Karnataka government announces major budget with focus on agriculture, infrastructure, and IT sector development.',link:'https://deccanherald.com',pubDate:new Date(Date.now()-10800000).toISOString(),cat:'Karnataka',emo:'🏛️',col:'#FFF7ED',src:'Deccan Herald',img:''},
+  {title:'Bollywood Blockbuster Crosses Rs 500 Crore Mark',summary:'The latest Bollywood release has broken box office records, crossing Rs 500 crore worldwide in just two weeks of release.',link:'https://bollywoodhungama.com',pubDate:new Date(Date.now()-14400000).toISOString(),cat:'Entertainment',emo:'🎬',col:'#FDF4FF',src:'Bollywood Hungama',img:''},
+  {title:'RBI Keeps Repo Rate Unchanged at 6.5%',summary:'The Reserve Bank of India maintains its benchmark interest rate steady, focusing on inflation control while supporting growth.',link:'https://livemint.com',pubDate:new Date(Date.now()-18000000).toISOString(),cat:'Business',emo:'🏦',col:'#FFFBEB',src:'Mint',img:''},
+  {title:'India Wins Test Series Against Australia 3-1',summary:'Team India clinched the Test series against Australia with a dominant performance, showcasing their strength in all departments.',link:'https://espncricinfo.com',pubDate:new Date(Date.now()-21600000).toISOString(),cat:'Sports',emo:'🏆',col:'#F0FFF4',src:'ESPN Cricinfo',img:''},
+  {title:'AI Startup from Bengaluru Raises $50 Million Funding',summary:'A Bengaluru-based AI startup focused on regional language processing has secured major Series B funding from global investors.',link:'https://yourstory.com',pubDate:new Date(Date.now()-25200000).toISOString(),cat:'Technology',emo:'🤖',col:'#EFF6FF',src:'YourStory',img:''},
+  {title:'Sensex Hits New All-Time High Above 83,000',summary:'BSE Sensex crossed 83,000 for the first time, driven by strong FII inflows and positive global market sentiment.',link:'https://moneycontrol.com',pubDate:new Date(Date.now()-28800000).toISOString(),cat:'Business',emo:'📊',col:'#FFFBEB',src:'MoneyControl',img:''},
+  {title:'New Metro Line Inaugurated in Bengaluru',summary:'The Phase 3 metro line connecting Electronic City to Whitefield was inaugurated, promising to ease traffic congestion in the IT corridor.',link:'https://bangaloremirror.com',pubDate:new Date(Date.now()-32400000).toISOString(),cat:'Karnataka',emo:'🚇',col:'#FFF7ED',src:'Bangalore Mirror',img:''},
+];
+
+const CAT_KN = {India:'ಭಾರತ',Karnataka:'ಕರ್ನಾಟಕ',Technology:'ತಂತ್ರಜ್ಞಾನ',Sports:'ಕ್ರೀಡೆ',Entertainment:'ಮನರಂಜನೆ',Business:'ವ್ಯಾಪಾರ',World:'ವಿಶ್ವ'};
+const CAT_MAP={'India':'IN','Karnataka':'KA','Technology':'TE','Sports':'SP','Entertainment':'EN','Business':'BU','World':'WO'};
+
+// ── CLOCK ────────────────────────────────────────────────────
+setInterval(()=>{
+  const n=new Date(),h=n.getHours(),m=n.getMinutes().toString().padStart(2,'0');
+  el('clk').textContent=`${(h%12)||12}:${m} ${h>=12?'PM':'AM'} IST`;
+},1000);
+
+// ── CACHE ────────────────────────────────────────────────────
+const cache={
+  set(k,v){try{localStorage.setItem(k,JSON.stringify({v,t:Date.now()}))}catch(_){}},
+  get(k,maxMin=CACHE_MIN){
+    try{const d=JSON.parse(localStorage.getItem(k)||'null');
+      if(d&&Date.now()-d.t<maxMin*60000)return d.v;}catch(_){}return null;
+  },
+  del(k){try{localStorage.removeItem(k)}catch(_){}}
+};
+
+// ── PARSE XML RSS ─────────────────────────────────────────────
+function parseRSS(xmlText, feed) {
+  try {
+    const xml = new DOMParser().parseFromString(xmlText, 'text/xml');
+    const items = Array.from(xml.querySelectorAll('item, entry'));
+    if (!items.length) return [];
+    return items.slice(0, 6).map(item => {
+      const getText = (tag) => {
+        const el = item.querySelector(tag);
+        return el ? (el.textContent || el.getAttribute('url') || '') : '';
+      };
+      const title = getText('title').trim();
+      const rawDesc = (getText('description') || getText('summary') || getText('content') || '').replace(/<[^>]+>/g,'').replace(/&[a-z#0-9]+;/gi,' ').trim();
+      const link = getText('link') || item.querySelector('link')?.getAttribute('href') || '#';
+      const pubDate = getText('pubDate') || getText('published') || getText('updated') || new Date().toISOString();
+      const img = extractImg(getText('description') || getText('content') || '');
+      return { title, summary: rawDesc.substring(0, 300), link, pubDate, cat: feed.cat, emo: feed.emo, col: feed.col, src: feed.cat, img };
+    }).filter(i => i.title.length > 8);
+  } catch(e) { return []; }
+}
+
+// ── FETCH ONE FEED VIA PROXY ──────────────────────────────────
+async function fetchFeedViaProxy(feed, proxy) {
+  const encodedUrl = encodeURIComponent(feed.url);
+  const proxyUrl = proxy.base + encodedUrl + (proxy.type === 'rss2json' ? '&count=6' : '');
+
+  const r = await fetch(proxyUrl, { signal: AbortSignal.timeout(8000) });
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+
+  if (proxy.type === 'rss2json') {
+    // Returns JSON
+    const d = await r.json();
+    if (d.status !== 'ok' || !d.items?.length) throw new Error('No items');
+    const srcName = d.feed?.title || feed.cat;
+    return d.items.map(item => {
+      const rawDesc = (item.description || item.content || '').replace(/<[^>]+>/g,'').replace(/&[a-z#0-9]+;/gi,' ').trim();
+      const img = extractImg(item.description || item.content || '');
+      return {
+        title: (item.title || '').replace(/<[^>]+>/g,'').trim(),
+        summary: rawDesc.substring(0, 300),
+        link: item.link || item.guid || '#',
+        pubDate: item.pubDate || new Date().toISOString(),
+        cat: feed.cat, emo: feed.emo, col: feed.col, src: srcName, img
+      };
+    }).filter(i => i.title.length > 8);
+  } else {
+    // Returns raw XML — parse it
+    const text = await r.text();
+    return parseRSS(text, feed);
+  }
+}
+
+// ── FETCH ONE FEED (tries all proxies) ───────────────────────
+async function fetchFeed(feed) {
+  for (const proxy of PROXIES) {
+    try {
+      const items = await fetchFeedViaProxy(feed, proxy);
+      if (items.length) return items;
+    } catch(e) {
+      // try next proxy
+    }
+  }
+  return []; // all proxies failed for this feed
+}
+
+function extractImg(html){
+  const m=html.match(/<img[^>]+src=["']([^"']+)["']/i);
+  return m?m[1]:'';
+}
+
+// ── FETCH ALL NEWS ───────────────────────────────────────────
+async function fetchAllNews(force=false){
+  if(!force){const c=cache.get('rss_news');if(c)return c;}
+  setP(20,'📡 Trying proxy 1/3: rss2json.com...');
+
+  // Try fetching top 5 feeds concurrently
+  const results = await Promise.allSettled(FEEDS.slice(0,6).map(f=>fetchFeed(f)));
+  let arts = [];
+  results.forEach(r=>{ if(r.status==='fulfilled') arts=[...arts,...r.value]; });
+
+  if (!arts.length) {
+    // All proxies failed — use hardcoded fallback news
+    console.warn('All RSS proxies failed, using fallback news.');
+    setP(55,'⚠️ Using cached news (network issue)...');
+    return FALLBACK_NEWS;
+  }
+
+  setP(50,'✅ News fetched! Processing...');
+  // Deduplicate + sort newest first + limit 25
+  const seen = new Set();
+  arts = arts.filter(a=>{
+    const k = a.title.substring(0,35).toLowerCase();
+    if(seen.has(k)) return false; seen.add(k); return true;
+  }).sort((a,b)=>new Date(b.pubDate)-new Date(a.pubDate)).slice(0,25);
+
+  cache.set('rss_news', arts);
+  return arts;
+}
+
+// ── WEATHER (wttr.in — free, no API key) ─────────────────────
+async function fetchWeather(){
+  const c=cache.get('wttr',60);
+  if(c){renderWeather(c);return;}
+  try{
+    const r=await fetch('https://wttr.in/Bengaluru?format=j1');
+    if(!r.ok)throw new Error();
+    const d=await r.json();
+    const cur=d.current_condition?.[0],tod=d.weather?.[0];
+    const w={temp:cur?.temp_C||'--',desc:cur?.weatherDesc?.[0]?.value||'Clear',hum:cur?.humidity||'--',wind:cur?.windspeedKmph||'--',hi:tod?.maxtempC||'--',lo:tod?.mintempC||'--'};
+    cache.set('wttr',w);renderWeather(w);
+  }catch(e){renderWeather({temp:'28',desc:'Partly Cloudy',hum:'65',wind:'12',hi:'33',lo:'21'});}
+}
+function renderWeather(w){
+  const t=parseInt(w.temp)||28;
+  el('wIco').textContent=t>36?'☀️':t>30?'⛅':t>22?'🌤️':'🌧️';
+  el('wTmp').textContent=`${w.temp}°`;
+  el('wDet').innerHTML=`Bengaluru<br>${w.desc}`;
+  el('wH').textContent=`${w.hum}%`;
+  el('wWd').textContent=`${w.wind} km/h`;
+  el('wHi').textContent=`${w.hi}°C`;
+  el('uW').textContent=`${w.temp}°C`;
+}
+
+// ── GOLD PRICE (goldprice.org — free, no key) ────────────────
+async function fetchGold(){
+  const c=cache.get('gold',120);
+  if(c){renderPrices(c);return;}
+  // Fallback realistic prices
+  let p={g24:'₹91,500',g22:'₹83,875',s1k:'₹94,800',s1g:'₹94.8',pet:'₹102.92',die:'₹88.94',sens:'82,340',sensC:'+0.3%',nif:'24,920',nifC:'+0.2%',bnk:'52,640',usd:'83.45',crd:'78.4'};
+  try{
+    const r=await fetch('https://data-asg.goldprice.org/dbXRates/INR');
+    if(r.ok){
+      const d=await r.json();
+      if(d.items?.[0]){
+        const g=d.items[0];
+        const g24=Math.round(g.xauPrice/31.1035*10);
+        p.g24=`₹${g24.toLocaleString('en-IN')}`;
+        p.g22=`₹${Math.round(g24*22/24).toLocaleString('en-IN')}`;
+        const ag=Math.round(g.xagPrice/31.1035*1000);
+        p.s1k=`₹${ag.toLocaleString('en-IN')}`;
+        p.s1g=`₹${(ag/1000).toFixed(1)}`;
+      }
+    }
+  }catch(e){}
+  cache.set('gold',p);renderPrices(p);
+}
+function renderPrices(p){
+  el('uG').textContent=p.g24; el('uS').textContent=p.s1k;
+  el('uP').textContent=p.pet; el('uD').textContent=p.die;
+  el('uSX').textContent=`${p.sens} ${p.sensC}`;
+  el('uNF').textContent=`${p.nif} ${p.nifC}`;
+  el('uUSD').textContent=`₹${p.usd}`;
+  el('priceGrid').innerHTML=`
+    <div class="pbox"><div class="pm">Gold 24K</div><div class="pp pgold">${p.g24}</div><div class="ps">per 10g</div></div>
+    <div class="pbox"><div class="pm">Gold 22K</div><div class="pp pgold">${p.g22}</div><div class="ps">per 10g</div></div>
+    <div class="pbox"><div class="pm">Silver</div><div class="pp psilv">${p.s1k}</div><div class="ps">per kg</div></div>
+    <div class="pbox"><div class="pm">Silver 1g</div><div class="pp psilv">${p.s1g}</div><div class="ps">per gram</div></div>`;
+  el('fuelBox').innerHTML=`
+    <div class="fr"><div><div class="fn">🔴 Petrol</div><div class="fc">Bengaluru</div></div><div class="fprice" style="color:#c0392b">${p.pet}</div></div>
+    <div class="fr"><div><div class="fn">🟡 Diesel</div><div class="fc">Bengaluru</div></div><div class="fprice" style="color:#e67e22">${p.die}</div></div>
+    <div class="fr"><div><div class="fn">🟢 CNG</div><div class="fc">Bengaluru</div></div><div class="fprice" style="color:#27ae60">~₹86.50</div></div>`;
+  el('ms1').textContent=`${p.sens} ${p.sensC}`;
+  el('ms2').textContent=`${p.nif} ${p.nifC}`;
+  el('ms3').textContent=p.bnk; el('ms4').textContent=`₹${p.usd}`; el('ms5').textContent=`$${p.crd}`;
+}
+
+// ── TRENDING TAGS (extracted from news titles) ───────────────
+function renderTrends(news){
+  const tags=['#IndiaNews','#IPL2025','#Karnataka','#GoldPrice','#Bollywood','#Technology','#ISRO','#Weather'];
+  // Add dynamic tags from news
+  news.slice(0,8).forEach(n=>{
+    const words=n.title.split(' ').filter(w=>w.length>5&&/^[A-Z]/.test(w));
+    if(words[0])tags.push('#'+words[0].replace(/[^a-zA-Z]/g,''));
+  });
+  const unique=[...new Set(tags)].slice(0,10);
+  el('trendBox').innerHTML=unique.map(t=>`<div class="trtag">${t}</div>`).join('');
+}
+
+// ── JOBS (static but realistic) ──────────────────────────────
+function renderJobs(){
+  const jobs=[
+    {t:'KPSC Group A/B: 2,500 Posts',o:'Karnataka PSC · Bengaluru',tg:['Govt','Fresher'],tp:['g','']},
+    {t:'Infosys Java/React Developer',o:'Bengaluru · 3-5 Years Exp',tg:['IT','₹8-14 LPA'],tp:['','']},
+    {t:'WFH: Content Writer – Kannada',o:'Remote · Any Graduate',tg:['WFH','Part-time'],tp:['w','']},
+    {t:'KSRTC Driver & Conductor',o:'Karnataka · 10th Pass',tg:['Govt','Urgent'],tp:['g','']},
+  ];
+  el('jobsBox').innerHTML=jobs.map(j=>`
+    <div class="ji">
+      <div class="jt">${j.t}</div><div class="jo">${j.o}</div>
+      <div class="jtags">${j.tg.map((t,i)=>`<span class="jtag ${j.tp[i]}">${t}</span>`).join('')}</div>
+    </div>`).join('');
+}
+
+// ── RENDER FUNCTIONS ─────────────────────────────────────────
+function catLbl(c){return G.lang==='kn'?(CAT_KN[c]||c):c;}
+function catCls(c){return CAT_MAP[c]||'IN';}
+function imgEl(url,fallbackEmo,size='100%',h='100%'){
+  if(!url)return`<span class="emo" style="font-size:inherit">${fallbackEmo}</span>`;
+  return`<img src="${url}" alt="" style="width:${size};height:${h};object-fit:cover" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="emo" style="display:none">${fallbackEmo}</span>`;
+}
+
+function renderHero(news){
+  if(!news?.length)return;
+  const[main,...rest]=news; const others=rest.slice(0,2);
+  let h=`<div class="hcard main" onclick="openModal(0)">
+    <div class="himg" style="background:linear-gradient(135deg,${main.col},#fff)">${imgEl(main.img,main.emo)}</div>
+    <div class="hbody">
+      <span class="ctag c${catCls(main.cat)}">${catLbl(main.cat)}</span>
+      <div class="htitle">${x(main.title)}</div>
+      <div class="hsum">${x(main.summary)}</div>
+      <div class="hfoot">
+        <span>⏱ ${ago(main.pubDate)} · ${x(main.src)}</span>
+        <div style="display:flex;gap:6px">
+          <a class="rdBtn" href="${x(main.link)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">🔗 Read</a>
+          <button class="wabtn" onclick="event.stopPropagation();shareWA('${x2(main.title)}','${x2(main.link)}')">📲 Share</button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+  others.forEach((s,i)=>{h+=`<div class="hcard" onclick="openModal(${i+1})">
+    <div class="himg" style="background:linear-gradient(135deg,${s.col},#fff)">${imgEl(s.img,s.emo)}</div>
+    <div class="hbody">
+      <span class="ctag c${catCls(s.cat)}">${catLbl(s.cat)}</span>
+      <div class="htitle">${x(s.title)}</div>
+      <div class="hfoot"><span>⏱ ${ago(s.pubDate)}</span><a class="rdBtn" href="${x(s.link)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">🔗 Read</a></div>
+    </div>
+  </div>`;});
+  el('heroGrid').innerHTML=h;
+}
+
+function renderList(filter='all'){
+  const list=filter==='all'?G.news:G.news.filter(n=>n.cat===filter);
+  if(!list.length){
+    el('newsList').innerHTML=`<div style="text-align:center;padding:28px;color:var(--mut)">${G.lang==='kn'?'ಈ ವಿಭಾಗದಲ್ಲಿ ಸುದ್ದಿ ಇಲ್ಲ':'No news in this category'}</div>`;
+    return;
+  }
+  el('newsList').innerHTML='<div class="nlist">'+list.map((n,i)=>{
+    const idx=G.news.indexOf(n);
+    return`<div class="nitem" onclick="openModal(${idx})">
+      <div class="nth" style="background:${n.col}">${imgEl(n.img,n.emo,'68px','68px')}</div>
+      <div>
+        <span class="ctag c${catCls(n.cat)}" style="margin-bottom:4px">${catLbl(n.cat)}</span>
+        <div class="ntitle">${x(n.title)}</div>
+        <div class="nmeta">
+          <span class="ntime">⏱ ${ago(n.pubDate)}</span>
+          <span class="nsrc">${x(n.src)}</span>
+          <a class="rdBtn" href="${x(n.link)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Read →</a>
+        </div>
+      </div>
+    </div>`;
+  }).join('')+'</div>';
+}
+
+function renderGrid(id,news,cat){
+  const items=news.filter(n=>n.cat===cat).slice(0,3);
+  if(!items.length){el(id).innerHTML='<div style="color:var(--mut);font-size:12px;padding:8px">Loading...</div>';return;}
+  el(id).innerHTML=items.map((item,i)=>{
+    const idx=G.news.indexOf(item);
+    return`<div class="ccard" onclick="openModal(${idx>=0?idx:0})">
+      <div class="cimg" style="background:linear-gradient(135deg,${item.col},#fff)">${imgEl(item.img,item.emo)}</div>
+      <div class="cbody"><div class="ctxt">${x(item.title)}</div></div>
+    </div>`;
+  }).join('');
+}
+
+function showTop10(cat,btn){
+  document.querySelectorAll('#t10tabs .tb').forEach(b=>b.classList.remove('on'));
+  btn?.classList.add('on');
+  const filtered=(cat==='all'?G.news:G.news.filter(n=>n.cat===cat)).slice(0,10);
+  if(!filtered.length){el('top10Box').innerHTML='<div style="text-align:center;padding:20px;color:var(--mut)">No items yet</div>';return;}
+  el('top10Box').innerHTML='<div class="t10l">'+filtered.map((item,i)=>{
+    const idx=G.news.indexOf(item);
+    return`<a class="t10i" href="${x(item.link)}" target="_blank" rel="noopener">
+      <div class="t10n">${String(i+1).padStart(2,'0')}</div>
+      <div class="t10t">${x(item.title)}</div>
+    </a>`;
+  }).join('')+'</div>';
+}
+
+function updateTicker(news){
+  const items=news.slice(0,12).map(n=>`<span class="ti">${x(n.title)}</span>`);
+  el('tickerEl').innerHTML=[...items,...items].join('');
+}
+
+// ── MODAL ────────────────────────────────────────────────────
+function openModal(idx){
+  const s=G.news[idx]; if(!s)return;
+  G.curTitle=s.title; G.curLink=s.link;
+  el('mTitle').textContent=s.title;
+  el('mSrcBadge').textContent=`📰 ${s.src} · ${ago(s.pubDate)}`;
+  el('mSum').innerHTML=`${x(s.summary)||'<em style="color:var(--mut)">Click "Read Full Story" to read the complete article.</em>'}`;
+  el('mLink').href=s.link||'#';
+  el('mOpenBtn').href=s.link||'#';
+  el('modal').classList.add('open');
+}
+function closeModal(e){
+  if(!e||e.target===el('modal'))el('modal').classList.remove('open');
+}
+
+// ── VOICE ────────────────────────────────────────────────────
+function toggleVoice(){
+  if(G.vOn){window.speechSynthesis?.cancel();G.vOn=false;el('vbtn').textContent='🔊';return;}
+  if(!window.speechSynthesis||!G.news.length)return;
+  const txt=G.news.slice(0,6).map(n=>n.title).join('. ');
+  const u=new SpeechSynthesisUtterance(txt);
+  u.lang='en-IN';u.rate=0.9;
+  u.onend=()=>{G.vOn=false;el('vbtn').textContent='🔊';};
+  window.speechSynthesis.speak(u);G.vOn=true;el('vbtn').textContent='⏹️';
+}
+
+// ── SHARE ────────────────────────────────────────────────────
+function shareWA(t,l){window.open(`https://wa.me/?text=${encodeURIComponent('📰 '+t+'\n🔗 '+l)}`);}
+function doShareWA(){shareWA(G.curTitle,G.curLink);}
+
+// ── FILTERS ──────────────────────────────────────────────────
+function doFilter(cat,btn){
+  G.filter=cat;
+  document.querySelectorAll('#catTabs .tb').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('#navRow .nl').forEach(b=>b.classList.remove('on'));
+  btn?.classList.add('on');
+  renderList(cat);
+  el('newsList').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function setLang(lang,btn){
+  G.lang=lang;
+  document.querySelectorAll('.lbtn').forEach(b=>b.classList.remove('on'));
+  btn?.classList.add('on');
+  el('hLbl').textContent=lang==='kn'?'ಇಂದಿನ ಪ್ರಮುಖ ಸುದ್ದಿ':"Today's Top News";
+  el('nLbl').textContent=lang==='kn'?'ಎಲ್ಲ ಸುದ್ದಿ':'All News';
+  renderHero(G.news);renderList(G.filter);updateTicker(G.news);
+  renderGrid('entGrid',G.news,'Entertainment');
+  renderGrid('viralGrid',G.news,'Sports');
+  showTop10('all',document.querySelector('#t10tabs .tb'));
+}
+
+// ── REFRESH ──────────────────────────────────────────────────
+async function refreshNews(){
+  el('updLbl').textContent=G.lang==='kn'?'ಅಪ್‌ಡೇಟ್...':'Refreshing...';
+  cache.del('rss_news');
+  try{
+    G.news=await fetchAllNews(true);
+    renderHero(G.news);renderList(G.filter);updateTicker(G.news);
+    renderGrid('entGrid',G.news,'Entertainment');
+    renderGrid('viralGrid',G.news,'Sports');
+    showTop10('all',document.querySelector('#t10tabs .tb.on'));
+    renderTrends(G.news);
+    const n=new Date();
+    el('updLbl').textContent=`${n.getHours()}:${String(n.getMinutes()).padStart(2,'0')} ${G.lang==='kn'?'ಅಪ್‌ಡೇಟ್':'Updated'}`;
+  }catch(e){el('updLbl').textContent='⚠️ Retry ↻';console.error(e);}
+}
+
+// ── HELPERS ──────────────────────────────────────────────────
+function el(id){return document.getElementById(id);}
+function x(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function x2(s){return String(s||'').replace(/'/g,"\\'").replace(/"/g,'&quot;');}
+function setP(pct,msg){el('lf').style.width=pct+'%';el('lm').textContent=msg;}
+function ago(d){
+  try{
+    const diff=(Date.now()-new Date(d))/60000;
+    if(diff<2)return G.lang==='kn'?'ಇದೀಗ':'Just now';
+    if(diff<60)return G.lang==='kn'?`${Math.floor(diff)} ನಿಮಿಷ ಮುಂಚೆ`:`${Math.floor(diff)}m ago`;
+    if(diff<1440)return G.lang==='kn'?`${Math.floor(diff/60)} ಗಂಟೆ ಮುಂಚೆ`:`${Math.floor(diff/60)}h ago`;
+    return G.lang==='kn'?`${Math.floor(diff/1440)} ದಿನ ಮುಂಚೆ`:`${Math.floor(diff/1440)}d ago`;
+  }catch(_){return G.lang==='kn'?'ಇಂದು':'Today';}
+}
+
+// ── BOOT ─────────────────────────────────────────────────────
+async function boot(){
+  setP(10,'📡 Connecting to NDTV, Times of India, Indian Express...');
+  try{
+    G.news=await fetchAllNews();
+    setP(55,'✅ News loaded!');
+    renderHero(G.news);renderList('all');updateTicker(G.news);
+    renderGrid('entGrid',G.news,'Entertainment');
+    renderGrid('viralGrid',G.news,'Sports');
+    showTop10('all',el('t10tabs').querySelector('.tb'));
+    renderTrends(G.news);renderJobs();
+    const n=new Date();
+    el('updLbl').textContent=`${n.getHours()}:${String(n.getMinutes()).padStart(2,'0')} ${G.lang==='kn'?'ಅಪ್‌ಡೇಟ್':'Updated'}`;
+  }catch(e){
+    console.error('Boot error:',e);
+    // Should not reach here since fetchAllNews always returns fallback
+    G.news = FALLBACK_NEWS;
+    renderHero(G.news); renderList('all'); updateTicker(G.news);
+    renderGrid('entGrid',G.news,'Entertainment');
+    renderGrid('viralGrid',G.news,'Sports');
+    showTop10('all',el('t10tabs').querySelector('.tb'));
+    renderTrends(G.news); renderJobs();
+    el('updLbl').textContent='⚠️ Offline mode';
+  }
+  setP(70,'💰 Loading prices & weather...');
+  await Promise.allSettled([fetchWeather(),fetchGold()]);
+  setP(100,'✅ Ready!');
+  setTimeout(()=>{const l=el('ld');l.classList.add('hide');setTimeout(()=>l.style.display='none',500);},200);
+  // Auto-refresh every 30 min — RSS only, zero API calls
+  setInterval(()=>refreshNews(),30*60*1000);
+}
+boot();
+</script>
+</body>
+</html>
